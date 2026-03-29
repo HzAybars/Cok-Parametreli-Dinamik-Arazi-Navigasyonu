@@ -1,0 +1,13 @@
+# TUA Ay Keşif Aracı Yer Kontrol İstasyonu v10.1 🌕🚀
+
+Projemiz, gezegen yüzeylerindeki zorlu topografik koşullarda görev yapacak otonom keşif araçları için baştan sona tasarlanmış, tam donanımlı bir yer kontrol istasyonu ve rota optimizasyon yazılımıdır. 
+
+Klasik navigasyon sistemlerinin aksine, bu proje sadece en kısa veya en hızlı yolu bulmayı değil; aracın fiziksel sınırlarını, çevresel zorlukları ve enerji kısıtlamalarını bir bütün olarak ele alarak **en güvenli ve sürdürülebilir rotayı** oluşturmayı hedefler. ROS tabanlı haberleşme altyapısı, çoklu çekirdek destekli algoritmalar ve GPU ivmeli sinematik analiz motoru ile entegre çalışarak kapsamlı bir operasyonel işlevsellik sağlar.
+
+## 🌟 Temel Özellikler
+
+* **Gelişmiş Arazi Analiz Modülü:** STL formatındaki 3 boyutlu yüzey verilerini içe aktararak yüksek çözünürlüklü grid yapılarına dönüştürür. Scipy interpolasyon ve Gauss filtreleme ile yüzey anormallikleri giderilir; eğim derecesi, bakı açısı ve zemin pürüzlülüğü gibi sürüş dinamiklerini doğrudan etkileyen parametreler diferansiyel denklemlerle hesaplanır.
+* **Doğal Eğrili A* Navigasyon Mimarisi:** Mesafe, eğim cezası, dinamik enerji tüketimi, seyahat süresi ve zemin pürüzlülüğü değişkenlerini hesaba katan sezgisel bir maliyet fonksiyonu kullanır. Dengeli, güvenli, enerji odaklı veya hızlı sürüş profillerine göre asenkron (multi-threading) çalışır ve rotayı B-spline eğrileriyle kinematik olarak yumuşatır. Keskin dönüşlerden arındırılmış, motor donanımını yormayacak pürüzsüz sürüş yörüngeleri elde edilir.
+* **Dinamik Güneş Enerjisi ve Akıllı Şarj Motoru:** Aracın fiziksel limitlerini (kütle, tekerlek yarıçapı, sürtünme vb.) baz alarak rotanın her adımındaki mekanik güç tüketimini hesaplar. Eş zamanlı olarak güneşin dinamik yüksekliği, azimut açısı ve zemin eğimiyle panellerin anlık üretimini simüle eder. Algoritma bataryanın kritik seviyeye düşeceğini öngörürse, geçmiş rotayı tarayarak en optimum insidans açısına sahip lokasyonları tespit eder ve **otonom şarj molaları** planlar.
+* **GPU İvmeli 3D Sinematik Render (PyVista):** Devasa topografik haritaları performans kaybı yaşamadan işler. Rota, otonom şarj durakları ve topografik sınırlar Head-Up Display (HUD) eşliğinde detaylıca incelenebilir.
+* **ROS (Nav2) Köprüsü:** Sanal ortamda simüle edilen rota, dünya koordinat sistemine dönüştürülerek standart `nav_msgs/Path` formatında doğrudan fiziksel robota veya RViz ortamına aktarılır.
